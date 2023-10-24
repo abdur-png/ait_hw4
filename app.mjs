@@ -22,16 +22,54 @@ app.use(express.urlencoded({ extended: false }));
 
 
 app.get('/', (req, res) => {
-  Review.find({})  // This empty object means "no specific query, return all"
+  // Construct a query object based on the query parameters
+  const queryObj = {};
+
+  if (req.query.semester && req.query.semester !== 'all') {
+    queryObj.semester = { $regex: new RegExp(`^${req.query.semester}$`, 'i') };
+  }
+
+  if (req.query.year) {
+    queryObj.year = req.query.year;
+  }
+
+  if (req.query.professor) {
+    queryObj.professor = req.query.professor;
+  }
+
+  // Use the queryObj to fetch reviews that match the criteria
+  Review.find(queryObj)
     .then(reviews => {
-      // 'reviews' contains the list of reviews returned by the query
-      res.render('reviews', { reviews: reviews });  // Render them using a view named 'reviews'
+      res.render('reviews', { reviews: reviews });
     })
     .catch(err => {
-      // Always good to catch errors
       console.error('Error fetching reviews:', err);
       res.status(500).send('Error retrieving reviews from the database');
     });
+});
+
+app.get('/reviews/add', (req, res) => {
+  res.render('addReview');
+});
+
+app.post('/reviews/add', (req, res) => {
+  const newReview = new Review({
+      courseNumber: req.body.courseNumber,
+      courseName: req.body.courseName,
+      semester: req.body.semester,
+      year: req.body.year,
+      professor: req.body.professor,
+      review: req.body.review
+  });
+
+  newReview.save()
+      .then(() => {
+          res.redirect('/');
+      })
+      .catch(err => {
+          console.error('Error saving review:', err);
+          res.status(500).render('error', { message: 'Error adding the review to the database' });
+      });
 });
 
 
