@@ -1,13 +1,13 @@
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="public/stylesheets/styles.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <!-- ... meta tags, title, styles ... -->
   </head>
   <body>
 
     <!-- Header -->
     <header>
-      <h1>AITY-THREE | ISSA B</h1>
+      <h1>CourseConfessions</h1>
       <p>An anonymous course review site.</p>
     </header>
 
@@ -19,10 +19,13 @@
     </nav>
 
     <!-- Filters -->
-    <section id="filters">
+    <form class="filter-section" method="GET" action="/">
       <label for="semester">Semester:</label>
       <select id="semester" name="semester">
-        <!-- ... options for semesters ... -->
+        <option value="all">All</option>
+        <option value="fall">Fall</option>
+        <option value="spring">Spring</option>
+        <option value="summer">Summer</option>
       </select>
 
       <label for="year">Year:</label>
@@ -31,8 +34,8 @@
       <label for="professor">Professor:</label>
       <input type="text" id="professor" name="professor" />
 
-      <button>Filter</button>
-    </section>
+      <button type="submit">Filter</button>
+    </form>
 
     <!-- Reviews Table -->
     <table>
