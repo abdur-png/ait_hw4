@@ -1,0 +1,14 @@
+nav {
+	padding: 20px 0;
+  }
+  
+  nav a {
+	margin: 0 15px;
+	text-decoration: none;
+	color: #007BFF; /* Example blue color for links */
+  }
+  
+  nav a:hover {
+	text-decoration: underline;
+  }
+  
