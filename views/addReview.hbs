@@ -1,4 +1,17 @@
-<!-- addReview.hbs -->
+<style>
+  form { width: 300px; /* adjust as needed */ margin: 0 auto; padding: 20px;
+  border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0,
+  0, 0.1); background-color: #f4f4f4; /* grey background */ } label { display:
+  block; margin-bottom: 10px; font-weight: bold; } input[type="text"], textarea
+  { width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc;
+  border-radius: 5px; font-size: 16px; } select { width: 100%; padding: 10px;
+  margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px; font-size:
+  16px; } button { padding: 10px 20px; background-color: #333; color: #fff;
+  border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+  button:hover { background-color: #555; }
+</style>
+
+<!-- your form here -->
 <form action="/reviews/add" method="post">
   <label>Course Number:</label>
   <input type="text" name="courseNumber" required />
@@ -8,7 +21,7 @@
   <select name="semester">
     <option value="Fall">Fall</option>
     <option value="Spring">Spring</option>
-    <option value="Summer">`Summer</option>
+    <option value="Summer">Summer</option>
   </select>
   <label>Year:</label>
   <input type="text" name="year" required />
